@@ -4,7 +4,7 @@ Shader "MeuShader/MeuGrayscaleShader"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Texture", 2D) = "white" {}
-        _Greyscale ("Fator de Cinza", Range(0,1)) = 0.0
+        _Grayscale ("Fator de Cinza", Range(0,1)) = 0.0
     }
     SubShader
     {
@@ -35,7 +35,7 @@ Shader "MeuShader/MeuGrayscaleShader"
             sampler2D _MainTex;
             fixed4 _Color;
             float4 _MainTex_ST;
-            float _Greyscale;
+            float _Grayscale;
 
             VertexOutput vert (MeshData meshData)
             {
@@ -52,7 +52,7 @@ Shader "MeuShader/MeuGrayscaleShader"
 
                 float intensity = cor.r * 0.299 + cor.g * 0.587 + cor.b * 0.114;
                 fixed4 bandw = fixed4(intensity, intensity, intensity, cor.a);
-                fixed4 lerped = lerp(cor, bandw, _Greyscale);
+                fixed4 lerped = lerp(cor, bandw, _Grayscale);
 
 
                 return lerped;
